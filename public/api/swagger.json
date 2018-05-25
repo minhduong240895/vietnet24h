@@ -1,0 +1,2290 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Motel API",
+        "version": "2.0"
+    },
+    "basePath": "/api/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/bills": {
+            "get": {
+                "tags": [
+                    "Bill"
+                ],
+                "summary": "get list bill of member",
+                "description": "get list bill of member",
+                "operationId": "listBill",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List bill of member",
+                                    "properties": {
+                                        "code": {
+                                            "description": "List bill of member",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "List bill of member",
+                                            "type": "string",
+                                            "example": "Get list bill successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "List bill of member",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Bill"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list bill"
+                    }
+                }
+            }
+        },
+        "/billinfo/{id}": {
+            "get": {
+                "tags": [
+                    "Bill"
+                ],
+                "summary": "Get information of bill",
+                "description": "Get information of bill",
+                "operationId": "getBill",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Bill ID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Get information of bill",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Get information of bill",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Get information of bill",
+                                            "type": "string",
+                                            "example": "Get information of bill successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Get information of bill",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Bill"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get information bill"
+                    }
+                }
+            }
+        },
+        "/bookingvans": {
+            "get": {
+                "tags": [
+                    "BookingVan"
+                ],
+                "summary": "get list bookingvans",
+                "description": "get list bookingvans for member",
+                "operationId": "list",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List Booking van",
+                                    "properties": {
+                                        "code": {
+                                            "description": "List Booking van",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "List Booking van",
+                                            "type": "string",
+                                            "example": "Get list schedules successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "List Booking van",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/BookingVan"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list service"
+                    }
+                }
+            }
+        },
+        "/bookingvans/booking": {
+            "post": {
+                "tags": [
+                    "BookingVan"
+                ],
+                "summary": "booking van",
+                "description": "booking van",
+                "operationId": "booking",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Van information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "action": {
+                                    "description": "booking ticket",
+                                    "type": "integer",
+                                    "example": "1: booking| 2: cancel"
+                                },
+                                "bookingvan_id": {
+                                    "description": "booking ticket",
+                                    "type": "integer"
+                                },
+                                "slot": {
+                                    "description": "booking ticket",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "booking ticket",
+                                    "properties": {
+                                        "code": {
+                                            "description": "booking ticket",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "booking ticket",
+                                            "type": "string",
+                                            "example": "Booking successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "booking ticket",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send Booking request"
+                    }
+                }
+            }
+        },
+        "/cleanrequest": {
+            "post": {
+                "tags": [
+                    "Clean"
+                ],
+                "summary": "save Clean request",
+                "description": "save Clean request and return message to member",
+                "operationId": "saveRequest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "description": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "categories": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "time": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "date": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Request of member",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Request of member",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Request of member",
+                                            "type": "string",
+                                            "example": "Send request successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Request of member",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send Clean request"
+                    }
+                }
+            }
+        },
+        "/getcleanprices": {
+            "get": {
+                "tags": [
+                    "Clean"
+                ],
+                "summary": "get list price of clean category",
+                "description": "get list price of clean category",
+                "operationId": "getListCleanPrice",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List clean category price",
+                                    "properties": {
+                                        "code": {
+                                            "description": "List clean category price",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "List clean category price",
+                                            "type": "string",
+                                            "example": "Get list room successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "List clean category price",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list price"
+                    }
+                }
+            }
+        },
+        "/events": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "get list events",
+                "description": "get list events for member",
+                "operationId": "events",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List events",
+                                    "properties": {
+                                        "code": {
+                                            "description": "List events",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "List events",
+                                            "type": "string",
+                                            "example": "Get list events successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "List events",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Event"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list event"
+                    }
+                }
+            }
+        },
+        "/events/register": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "register to join event",
+                "description": "register to join event",
+                "operationId": "register",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "event information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "action": {
+                                    "description": "Register to join event",
+                                    "type": "integer",
+                                    "example": "1: booking| 2: cancel"
+                                },
+                                "event_id": {
+                                    "description": "Register to join event",
+                                    "type": "integer"
+                                },
+                                "slot": {
+                                    "description": "Register to join event",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Register to join event",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Register to join event",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Register to join event",
+                                            "type": "string",
+                                            "example": "Register successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Register to join event",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send register request"
+                    }
+                }
+            }
+        },
+        "/events/interest": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "interest to join event",
+                "description": "interest to join event",
+                "operationId": "interest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "event information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "event_id": {
+                                    "description": "Interest to join event",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Interest to join event",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Interest to join event",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Interest to join event",
+                                            "type": "string",
+                                            "example": "Interest successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Interest to join event",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send interest request"
+                    }
+                }
+            }
+        },
+        "/events/unfollow": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "unfollow event",
+                "description": "unfollow event",
+                "operationId": "unfollow",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "event information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "event_id": {
+                                    "description": "Interest to join event",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Interest to join event",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Interest to join event",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Interest to join event",
+                                            "type": "string",
+                                            "example": "Interest successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Interest to join event",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send interest request"
+                    }
+                }
+            }
+        },
+        "/members/register": {
+            "post": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "register new member",
+                "description": "Register new member with status is none-active",
+                "operationId": "register",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Member information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Register new member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "password": {
+                                    "description": "Register new member",
+                                    "type": "string",
+                                    "maximum": 50
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Register new member",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Register new member",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Register new member",
+                                            "type": "string",
+                                            "example": "Thanks for signing up! Please check your email to complete your registration"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Register new member",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send register request"
+                    }
+                }
+            }
+        },
+        "/members/verify": {
+            "put": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "verify",
+                "description": "verify",
+                "operationId": "verify",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Verify information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "verification_code": {
+                                    "description": "Verify",
+                                    "type": "string",
+                                    "maximum": 100
+                                },
+                                "email": {
+                                    "description": "Verify",
+                                    "type": "string",
+                                    "maximum": 100
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Verify",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Verify",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Verify",
+                                            "type": "string",
+                                            "example": "You have successfully verified your email address"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Verify",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Member"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when active account"
+                    }
+                }
+            }
+        },
+        "/members/login": {
+            "post": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "login from client",
+                "description": "Login from client",
+                "operationId": "login",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Member information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Login",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "password": {
+                                    "description": "Login",
+                                    "type": "string",
+                                    "maximum": 50
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Login",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Login",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: not verify| 1: success| 2 : account is locked"
+                                        },
+                                        "message": {
+                                            "description": "Login",
+                                            "type": "string",
+                                            "example": "Login successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Login",
+                                    "properties": {
+                                        "token": {
+                                            "description": "Login",
+                                            "type": "string",
+                                            "example": "ASDNJFIWFHDBFSADKFNSDKF"
+                                        },
+                                        "info": {
+                                            "description": "Login",
+                                            "type": "object",
+                                            "items": {
+                                                "$ref": "#/definitions/Member"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/members/resetpassword": {
+            "put": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "reset password ",
+                "description": "Reset and send new password to email",
+                "operationId": "resetPassword",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "email of account",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "get new password",
+                                    "type": "string",
+                                    "maximum": 100
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "get new password",
+                                    "properties": {
+                                        "code": {
+                                            "description": "get new password",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "get new password",
+                                            "type": "string",
+                                            "example": "Your password is reset, Please check your email to get your password"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "get new password",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send register request"
+                    }
+                }
+            }
+        },
+        "/members/update": {
+            "post": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "update ",
+                "description": "update information of member",
+                "operationId": "update",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "email of account",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "description": "Update member infor",
+                                    "type": "string",
+                                    "maximum": 100
+                                },
+                                "phone_number": {
+                                    "description": "Update member infor",
+                                    "type": "string",
+                                    "maximum": 100
+                                },
+                                "image": {
+                                    "description": "Update member infor",
+                                    "type": "string"
+                                },
+                                "address": {
+                                    "description": "Update member infor",
+                                    "type": "string",
+                                    "maximum": 100
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Update member infor",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Update member infor",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Update member infor",
+                                            "type": "string",
+                                            "example": "Change your infor successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Update member infor",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Member"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send update request"
+                    }
+                }
+            }
+        },
+        "/members/changepassword": {
+            "put": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "change password ",
+                "description": "change password",
+                "operationId": "changePass",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "old and new password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "oldPassword": {
+                                    "description": "Update password",
+                                    "type": "string",
+                                    "maximum": 100
+                                },
+                                "newPassword": {
+                                    "description": "Update password",
+                                    "type": "string",
+                                    "maximum": 100
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Update password",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Update password",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Update password",
+                                            "type": "string",
+                                            "example": "Change your password successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Update password",
+                                    "type": "object",
+                                    "items": {
+                                        "$ref": "#/definitions/Member"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send update request"
+                    }
+                }
+            }
+        },
+        "/reports": {
+            "post": {
+                "tags": [
+                    "Report"
+                ],
+                "summary": "save report",
+                "description": "save report and return message to member",
+                "operationId": "saveRequest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "category": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "time": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "media": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "description": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Report of member",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Report of member",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Report of member",
+                                            "type": "string",
+                                            "example": "Send request successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Report of member",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send Room request"
+                    }
+                }
+            }
+        },
+        "/roomrequest": {
+            "post": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "save Room request",
+                "description": "save Room request and return message to member",
+                "operationId": "saveRequest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "price": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "room_id": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "phone_number": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Request of member",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Request of member",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Request of member",
+                                            "type": "string",
+                                            "example": "Send request successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Request of member",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send Room request"
+                    }
+                }
+            }
+        },
+        "/rooms": {
+            "get": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "get list clear rooms",
+                "description": "get list clear rooms for member",
+                "operationId": "listRoom",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List clear rooms",
+                                    "properties": {
+                                        "code": {
+                                            "description": "List clear rooms",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "List clear rooms",
+                                            "type": "string",
+                                            "example": "Get list room successfully"
+                                        },
+                                        "member_room": {
+                                            "description": "List clear rooms",
+                                            "type": "integer",
+                                            "example": "room id"
+                                        },
+                                        "allowRequestRoom": {
+                                            "description": "List clear rooms",
+                                            "type": "integer",
+                                            "example": "0: none accept sent request| 1: accept sent request"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "List clear rooms",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Room"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list room"
+                    }
+                }
+            }
+        },
+        "/servicerequest": {
+            "post": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "save service request",
+                "description": "save service request and return message to member",
+                "operationId": "saveRequest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "services": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "quantities": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "Request of member",
+                                    "properties": {
+                                        "code": {
+                                            "description": "Request of member",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "Request of member",
+                                            "type": "string",
+                                            "example": "Send request successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "Request of member",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send service request"
+                    }
+                }
+            }
+        },
+        "/services": {
+            "get": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "get list of services",
+                "description": "get list of services for member",
+                "operationId": "listService",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accessToken",
+                        "in": "header",
+                        "description": "eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List services",
+                                    "properties": {
+                                        "code": {
+                                            "description": "List services",
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": "0: has problem| 1: success"
+                                        },
+                                        "message": {
+                                            "description": "List services",
+                                            "type": "string",
+                                            "example": "Get list services successfully"
+                                        },
+                                        "member_room": {
+                                            "description": "List services",
+                                            "type": "string",
+                                            "example": "room id of member"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "data": {
+                                    "description": "List services",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Service"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list service"
+                    }
+                }
+            }
+        },
+        "/upload": {
+            "post": {
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "upload and save file ",
+                "description": "upload and save file",
+                "operationId": "upload",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "file": {
+                                    "description": "upload file",
+                                    "type": "string",
+                                    "maximum": 1500
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "fileUrl": {
+                                    "description": "upload file",
+                                    "type": "string",
+                                    "example": "\\uploads\\b4a872111d6f862ec3e3a6c539d6f773.jpg"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when upload file"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Bill": {
+            "required": [
+                "id",
+                "total",
+                "payment_time",
+                "status",
+                "memberID",
+                "services"
+            ],
+            "properties": {
+                "id": {
+                    "description": " id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "total": {
+                    "description": " total money of bill",
+                    "type": "integer",
+                    "example": "1500"
+                },
+                "payment_time": {
+                    "description": " date of payment",
+                    "type": "string",
+                    "example": "2018-5-4"
+                },
+                "status": {
+                    "description": "Status",
+                    "type": "integer",
+                    "example": "2"
+                },
+                "memberID": {
+                    "description": "Id of Member",
+                    "type": "integer",
+                    "example": "23"
+                },
+                "services": {
+                    "description": "list services of bill",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MapServiceRequest"
+                    }
+                }
+            }
+        },
+        "BookingVan": {
+            "required": [
+                "id",
+                "title",
+                "description",
+                "from",
+                "to",
+                "time_start",
+                "date",
+                "slot",
+                "member_register",
+                "slotformem",
+                "status"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Ticket id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "title": {
+                    "description": "title",
+                    "type": "string",
+                    "example": "title of the Ticket"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string",
+                    "example": "this is a description"
+                },
+                "from": {
+                    "description": "Pick up point",
+                    "type": "string",
+                    "example": "17683 Trystan Village Suite 271, North Elmoreburgh, WY 24437"
+                },
+                "to": {
+                    "description": "destination",
+                    "type": "string",
+                    "example": "17683 Trystan Village Suite 271, North Elmoreburgh, WY 24437"
+                },
+                "time_start": {
+                    "description": "time start Ticket",
+                    "type": "string",
+                    "example": "9:45"
+                },
+                "date": {
+                    "description": "date of Ticket",
+                    "type": "string",
+                    "example": "2018-6-5"
+                },
+                "slot": {
+                    "description": "how many slot for Ticket",
+                    "type": "integer",
+                    "example": "15"
+                },
+                "member_register": {
+                    "description": "list id of member, who register Ticket",
+                    "type": "string",
+                    "example": "1|2|5|6"
+                },
+                "slotformem": {
+                    "description": "list slot for member, who booking van",
+                    "type": "string",
+                    "example": "1|2|5|6"
+                },
+                "status": {
+                    "description": "status of Ticket",
+                    "type": "integer",
+                    "example": "1, 2"
+                }
+            }
+        },
+        "Clean": {
+            "required": [
+                "id",
+                "title",
+                "time",
+                "description",
+                "status",
+                "member"
+            ],
+            "properties": {
+                "id": {
+                    "description": "clean request id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string",
+                    "example": "title "
+                },
+                "description": {
+                    "description": "description of request",
+                    "type": "string",
+                    "example": "this is content"
+                },
+                "categories": {
+                    "description": "categories of request",
+                    "type": "string",
+                    "example": "bedroom|toilet"
+                },
+                "prices": {
+                    "description": "prices of request",
+                    "type": "string",
+                    "example": "20|40"
+                },
+                "time": {
+                    "description": "String describe check in time ",
+                    "type": "string",
+                    "example": "19:30"
+                },
+                "date": {
+                    "description": "String describe check in time ",
+                    "type": "string",
+                    "example": "2018-5-12"
+                },
+                "status": {
+                    "description": "status of request",
+                    "type": "integer",
+                    "example": "1, 2"
+                },
+                "member": {
+                    "description": "name of member, who send request",
+                    "type": "string",
+                    "example": "john, Katarina"
+                }
+            }
+        },
+        "Event": {
+            "required": [
+                "id",
+                "title",
+                "image",
+                "description",
+                "location",
+                "time_start",
+                "time_end",
+                "slot",
+                "member_register",
+                "member_interested",
+                "slotformem",
+                "status"
+            ],
+            "properties": {
+                "id": {
+                    "description": "event id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "title": {
+                    "description": "title",
+                    "type": "string",
+                    "example": "title of the event"
+                },
+                "image": {
+                    "description": "path of image",
+                    "type": "string",
+                    "example": "\\uploads\\fakers\\ffc29d8697d186482b01a07729e6948f.jpg"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string",
+                    "example": "this is a description"
+                },
+                "location": {
+                    "description": "location of the event",
+                    "type": "string",
+                    "example": "17683 Trystan Village Suite 271, North Elmoreburgh, WY 24437"
+                },
+                "time_start": {
+                    "description": "time start event",
+                    "type": "string",
+                    "example": "2018-6-5"
+                },
+                "time_end": {
+                    "description": "time end event",
+                    "type": "string",
+                    "example": "2018-6-5"
+                },
+                "slot": {
+                    "description": "how many slot for event",
+                    "type": "integer",
+                    "example": "15"
+                },
+                "member_register": {
+                    "description": "list id of member, who register event",
+                    "type": "string",
+                    "example": "1|2|5|6"
+                },
+                "member_interested": {
+                    "description": "list id of member, who register event",
+                    "type": "string",
+                    "example": "1|2|5|6"
+                },
+                "slotformem": {
+                    "description": "list slot of member, who register event",
+                    "type": "string",
+                    "example": "1|2|5|6"
+                },
+                "status": {
+                    "description": "status of event",
+                    "type": "integer",
+                    "example": "1, 2"
+                }
+            }
+        },
+        "MapBillService": {
+            "required": [
+                "id",
+                "service",
+                "quantity",
+                "unit",
+                "price",
+                "total",
+                "bill_id"
+            ],
+            "properties": {
+                "id": {
+                    "description": " id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "service": {
+                    "description": " nameof services",
+                    "type": "string",
+                    "example": "5"
+                },
+                "quantity": {
+                    "description": "quantity of service",
+                    "type": "string",
+                    "example": "5"
+                },
+                "unit": {
+                    "description": "unit of service",
+                    "type": "string",
+                    "example": "pcs"
+                },
+                "price": {
+                    "description": "price of each services",
+                    "type": "string",
+                    "example": "100"
+                },
+                "total": {
+                    "description": " total money of service",
+                    "type": "integer",
+                    "example": "1500"
+                },
+                "bill_id": {
+                    "description": " id of bill",
+                    "type": "integer",
+                    "example": "1"
+                }
+            }
+        },
+        "MapServiceRequest": {
+            "required": [
+                "id",
+                "service_id",
+                "service_name",
+                "price",
+                "quantity",
+                "request_id"
+            ],
+            "properties": {
+                "id": {
+                    "description": " id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "service_id": {
+                    "description": " id of service",
+                    "type": "integer",
+                    "example": "5"
+                },
+                "service_name": {
+                    "description": "name of service",
+                    "type": "string",
+                    "example": "5"
+                },
+                "price": {
+                    "description": "price of service",
+                    "type": "integer",
+                    "example": "5"
+                },
+                "quantity": {
+                    "description": "quantity of service",
+                    "type": "integer",
+                    "example": "5"
+                },
+                "request_id": {
+                    "description": "id of request",
+                    "type": "integer",
+                    "example": "2"
+                }
+            }
+        },
+        "Member": {
+            "required": [
+                "id",
+                "name",
+                "avatar",
+                "email",
+                "phone_number",
+                "rental",
+                "advanced",
+                "ultility",
+                "tenancy_time"
+            ],
+            "properties": {
+                "id": {
+                    "description": "member id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "name": {
+                    "description": "member name",
+                    "type": "string",
+                    "example": "qui"
+                },
+                "avatar": {
+                    "description": "avatar",
+                    "type": "string",
+                    "example": "\\uploads/fakers\\21360a04a592809ed2638c00536522dd.jpg"
+                },
+                "email": {
+                    "description": "member email",
+                    "type": "string",
+                    "example": "john#gmail.com"
+                },
+                "phone_number": {
+                    "description": "member phone number",
+                    "type": "string",
+                    "example": "0986668886"
+                },
+                "rental": {
+                    "description": "retal money per month",
+                    "type": "string",
+                    "example": "200"
+                },
+                "security": {
+                    "description": "2 month security deposit",
+                    "type": "string",
+                    "example": "15"
+                },
+                "ultility": {
+                    "description": "1/2 month ultility deposit",
+                    "type": "string",
+                    "example": "10"
+                },
+                "tenancy_time": {
+                    "description": "2018/3/5 - 2020/2/5",
+                    "type": "string",
+                    "example": "10"
+                }
+            }
+        },
+        "Notification": {
+            "required": [
+                "id",
+                "title",
+                "message",
+                "members",
+                "status"
+            ],
+            "properties": {
+                "id": {
+                    "description": " id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "title": {
+                    "description": " title of notification",
+                    "type": "string",
+                    "example": "this is a title"
+                },
+                "message": {
+                    "description": "description of notification",
+                    "type": "string",
+                    "example": "this is a test message"
+                },
+                "members": {
+                    "description": "list id of members, who will receive notification",
+                    "type": "string",
+                    "example": "1|2|3"
+                },
+                "status": {
+                    "description": "Status",
+                    "type": "integer",
+                    "example": "1:private|2:public"
+                }
+            }
+        },
+        "Report": {
+            "required": [
+                "id",
+                "title",
+                "time",
+                "media",
+                "category",
+                "description",
+                "status",
+                "memberID"
+            ],
+            "properties": {
+                "id": {
+                    "description": "report id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "title": {
+                    "description": "report title",
+                    "type": "string",
+                    "example": "qui"
+                },
+                "media": {
+                    "description": " image or video",
+                    "type": "string",
+                    "example": "\\uploads/fakers\\21360a04a592809ed2638c00536522dd.jpg"
+                },
+                "category": {
+                    "description": " category of issue",
+                    "type": "string",
+                    "example": "lighting"
+                },
+                "time": {
+                    "description": "time occur issue",
+                    "type": "string",
+                    "example": "2018-9-5"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string",
+                    "example": "description text"
+                },
+                "status": {
+                    "description": "Status",
+                    "type": "integer",
+                    "example": "2"
+                },
+                "member": {
+                    "description": "name of member, who send request",
+                    "type": "string",
+                    "example": "john, Katarina"
+                }
+            }
+        },
+        "RoomRequest": {
+            "required": [
+                "id",
+                "price",
+                "time",
+                "status",
+                "member"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Service id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "price": {
+                    "description": "price of request",
+                    "type": "string",
+                    "example": "this is price"
+                },
+                "time": {
+                    "description": "String describe check in time ",
+                    "type": "string",
+                    "example": "2018-5-12"
+                },
+                "status": {
+                    "description": "status of request",
+                    "type": "integer",
+                    "example": "1, 2"
+                },
+                "member": {
+                    "description": "name of member, who send request",
+                    "type": "string",
+                    "example": "john, Katarina"
+                }
+            }
+        },
+        "Room": {
+            "required": [
+                "id",
+                "name",
+                "image1",
+                "image2",
+                "image3",
+                "image4",
+                "image5",
+                "place",
+                "squareMeters",
+                "description",
+                "price",
+                "service",
+                "status",
+                "memberID"
+            ],
+            "properties": {
+                "id": {
+                    "description": " id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "name": {
+                    "description": " name",
+                    "type": "string",
+                    "example": "qui"
+                },
+                "image1": {
+                    "description": " image 1",
+                    "type": "string",
+                    "example": "\\uploads/fakers\\21360a04a592809ed2638c00536522dd.jpg"
+                },
+                "image2": {
+                    "description": " image 2",
+                    "type": "string",
+                    "example": "\\uploads/fakers\\21360a04a592809ed2638c00536522dd.jpg"
+                },
+                "image3": {
+                    "description": " image 3",
+                    "type": "string",
+                    "example": "\\uploads/fakers\\21360a04a592809ed2638c00536522dd.jpg"
+                },
+                "image4": {
+                    "description": " image 4",
+                    "type": "string",
+                    "example": "\\uploads/fakers\\21360a04a592809ed2638c00536522dd.jpg"
+                },
+                "image5": {
+                    "description": " image 5",
+                    "type": "string",
+                    "example": "\\uploads/fakers\\21360a04a592809ed2638c00536522dd.jpg"
+                },
+                "place": {
+                    "description": " Address",
+                    "type": "string",
+                    "example": "557 Alivia Mountains Suite 578 Port Yasminfort, CT 02407"
+                },
+                "squareMeters": {
+                    "description": "Square Meters",
+                    "type": "integer",
+                    "example": "77"
+                },
+                "description": {
+                    "description": "Description",
+                    "type": "string",
+                    "example": "557 Alivia Mountains Suite 578 Port Yasminfort, CT 02407"
+                },
+                "price": {
+                    "description": "Price",
+                    "type": "integer",
+                    "example": "123"
+                },
+                "service": {
+                    "description": "Service",
+                    "type": "string",
+                    "example": "123"
+                },
+                "status": {
+                    "description": "Status",
+                    "type": "integer",
+                    "example": "2"
+                },
+                "memberID": {
+                    "description": "Id of Member",
+                    "type": "integer",
+                    "example": "23"
+                }
+            }
+        },
+        "ServiceRequest": {
+            "required": [
+                "id",
+                "title",
+                "description",
+                "services",
+                "quantities",
+                "status",
+                "member"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Service id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "services": {
+                    "description": "String describe service_id ",
+                    "type": "string",
+                    "example": "1|2|3"
+                },
+                "quantities": {
+                    "description": "String describe quantity of each services ",
+                    "type": "string",
+                    "example": "1|2|3"
+                },
+                "status": {
+                    "description": "status of request",
+                    "type": "integer",
+                    "example": "1, 2"
+                },
+                "member": {
+                    "description": "name of member, who send request",
+                    "type": "string",
+                    "example": "john, Katarina"
+                }
+            }
+        },
+        "Service": {
+            "required": [
+                "id",
+                "name",
+                "image",
+                "price",
+                "unit"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Service id",
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "name": {
+                    "description": "Service name",
+                    "type": "string",
+                    "example": "qui"
+                },
+                "image": {
+                    "description": "Service image",
+                    "type": "string",
+                    "example": "\\uploads/fakers\\21360a04a592809ed2638c00536522dd.jpg"
+                },
+                "price": {
+                    "description": "Price",
+                    "type": "integer",
+                    "example": "123"
+                },
+                "description": {
+                    "description": "description of service",
+                    "type": "string",
+                    "example": "this is a test"
+                }
+            }
+        }
+    },
+    "responses": {
+        "304": {
+            "description": "Has problem when send login request"
+        }
+    }
+}

@@ -1,0 +1,894 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Motel API",
+        "version": "2.0"
+    },
+    "basePath": "/api/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/cleanrequest": {
+            "post": {
+                "tags": [
+                    "Clean"
+                ],
+                "summary": "save Clean request",
+                "description": "save Clean request and return message to member",
+                "operationId": "saveRequest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "description": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "time": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Request of member",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0: Failed|1: Success"
+                                },
+                                "message": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "example": "You have successfully send your request"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send Clean request"
+                    }
+                }
+            }
+        },
+        "/events": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "get list events",
+                "description": "get list events for member",
+                "operationId": "events",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List events",
+                                    "type": "object",
+                                    "example": "{code: 1, message : Get list event successfully}"
+                                },
+                                "data": {
+                                    "description": "List events",
+                                    "type": "object",
+                                    "example": "{}"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list event"
+                    }
+                }
+            }
+        },
+        "events/register": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "register to join event",
+                "description": "register to join event",
+                "operationId": "register",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "event information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "event_id": {
+                                    "description": "Register to join event",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Register to join event",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0|1|2"
+                                },
+                                "message": {
+                                    "description": "Register to join event",
+                                    "type": "string",
+                                    "example": "Register successfully!"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send register request"
+                    }
+                }
+            }
+        },
+        "events/cancel": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "cancel registration",
+                "description": "cancel registration",
+                "operationId": "cancel",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "event information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "event_id": {
+                                    "description": "cancel registration",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "cancel registration",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0|1|2"
+                                },
+                                "message": {
+                                    "description": "cancel registration",
+                                    "type": "string",
+                                    "example": "Cancel registration successfully!"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send register request"
+                    }
+                }
+            }
+        },
+        "/members/register": {
+            "post": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "register new member",
+                "description": "Register new member with status is none-active",
+                "operationId": "register",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Member information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "description": "Register new member",
+                                    "type": "string",
+                                    "maximum": 100
+                                },
+                                "email": {
+                                    "description": "Register new member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "phone_number": {
+                                    "description": "Register new member",
+                                    "type": "string",
+                                    "maximum": 12
+                                },
+                                "password": {
+                                    "description": "Register new member",
+                                    "type": "string",
+                                    "maximum": 50
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Register new member",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0|1|2"
+                                },
+                                "message": {
+                                    "description": "Register new member",
+                                    "type": "string",
+                                    "example": "Thanks for signing up! Please check your email to complete your registration"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send register request"
+                    }
+                }
+            }
+        },
+        "/members/verify": {
+            "post": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "verify",
+                "description": "verify",
+                "operationId": "verify",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Verify information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "verification_code": {
+                                    "description": "Verify",
+                                    "type": "string",
+                                    "maximum": 100
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Verify",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0: Failed|1: Success"
+                                },
+                                "message": {
+                                    "description": "Verify",
+                                    "type": "string",
+                                    "example": "You have successfully verified your email address"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when active account"
+                    }
+                }
+            }
+        },
+        "/members/login": {
+            "post": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "login from client",
+                "description": "Login from client",
+                "operationId": "login",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Member information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Login",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "password": {
+                                    "description": "Login",
+                                    "type": "string",
+                                    "maximum": 50
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Login",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0|1|2"
+                                },
+                                "message": {
+                                    "description": "Login",
+                                    "type": "string",
+                                    "example": "Login successfully"
+                                },
+                                "data": {
+                                    "description": "Login",
+                                    "type": "object",
+                                    "example": "{token : avbcd}"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send login request"
+                    }
+                }
+            }
+        },
+        "/members/resetpassword": {
+            "post": {
+                "tags": [
+                    "Member"
+                ],
+                "summary": "reset password ",
+                "description": "Reset and send new password to email",
+                "operationId": "resetPassword",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "email of account",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "description": "Register new member",
+                                    "type": "string",
+                                    "maximum": 100
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Register new member",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0|1|2"
+                                },
+                                "message": {
+                                    "description": "Register new member",
+                                    "type": "string",
+                                    "example": "Please check your email to get your password"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send register request"
+                    }
+                }
+            }
+        },
+        "/reports": {
+            "post": {
+                "tags": [
+                    "Report"
+                ],
+                "summary": "save report",
+                "description": "save report and return message to member",
+                "operationId": "saveRequest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "image_1": {
+                                    "description": "Report of member",
+                                    "type": "file",
+                                    "maximum": 1500
+                                },
+                                "image_2": {
+                                    "description": "Report of member",
+                                    "type": "file",
+                                    "maximum": 1500
+                                },
+                                "image_3": {
+                                    "description": "Report of member",
+                                    "type": "file",
+                                    "maximum": 1500
+                                },
+                                "image_4": {
+                                    "description": "Report of member",
+                                    "type": "file",
+                                    "maximum": 1500
+                                },
+                                "image_5": {
+                                    "description": "Report of member",
+                                    "type": "file",
+                                    "maximum": 1500
+                                },
+                                "time": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "video": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "description": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Report of member",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0: Failed|1: Success"
+                                },
+                                "message": {
+                                    "description": "Report of member",
+                                    "type": "string",
+                                    "example": "You have successfully send your request"
+                                },
+                                "data": {
+                                    "description": "Report of member",
+                                    "type": "object",
+                                    "example": "{}"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send Room request"
+                    }
+                }
+            }
+        },
+        "/roomrequest": {
+            "post": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "save Room request",
+                "description": "save Room request and return message to member",
+                "operationId": "saveRequest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "description": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "room_id": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "time": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Request of member",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0: Failed|1: Success"
+                                },
+                                "message": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "example": "You have successfully send your request"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send Room request"
+                    }
+                }
+            }
+        },
+        "/rooms": {
+            "get": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "get list clear rooms",
+                "description": "get list clear rooms for member",
+                "operationId": "listRoom",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List clear rooms",
+                                    "type": "object",
+                                    "example": "{code: 1, message : Get list room successfully}"
+                                },
+                                "data": {
+                                    "description": "List clear rooms",
+                                    "type": "object",
+                                    "example": "{}"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list room"
+                    }
+                }
+            }
+        },
+        "/schedules": {
+            "get": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "get list schedules",
+                "description": "get list schedules for member",
+                "operationId": "schedules",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List schedules",
+                                    "type": "object",
+                                    "example": "{code: 1, message : Get list schedule successfully}"
+                                },
+                                "data": {
+                                    "description": "List schedules",
+                                    "type": "object",
+                                    "example": "{}"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list service"
+                    }
+                }
+            }
+        },
+        "schedules/register": {
+            "post": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "register to join schedule",
+                "description": "register to join schedule",
+                "operationId": "register",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Schedule information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "schedule_id": {
+                                    "description": "Register to join schedule",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Register to join schedule",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0|1|2"
+                                },
+                                "message": {
+                                    "description": "Register to join schedule",
+                                    "type": "string",
+                                    "example": "Register successfully!"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send register request"
+                    }
+                }
+            }
+        },
+        "schedules/cancel": {
+            "post": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "cancel registration",
+                "description": "cancel registration",
+                "operationId": "cancel",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Schedule information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "schedule_id": {
+                                    "description": "cancel registration",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "cancel registration",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0|1|2"
+                                },
+                                "message": {
+                                    "description": "cancel registration",
+                                    "type": "string",
+                                    "example": "Register successfully!"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send register request"
+                    }
+                }
+            }
+        },
+        "/servicerequest": {
+            "post": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "save service request",
+                "description": "save service request and return message to member",
+                "operationId": "saveRequest",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request information",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "description": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 1500
+                                },
+                                "services": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                },
+                                "quantities": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "maximum": 150
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "code": {
+                                    "description": "Request of member",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": "0: Failed|1: Success"
+                                },
+                                "message": {
+                                    "description": "Request of member",
+                                    "type": "string",
+                                    "example": "You have successfully send your request"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when send service request"
+                    }
+                }
+            }
+        },
+        "/services": {
+            "get": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "get list of services",
+                "description": "get list of services for member",
+                "operationId": "listService",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "properties": {
+                                "meta": {
+                                    "description": "List services",
+                                    "type": "object",
+                                    "example": "{code: 1, message : Get list services successfully}"
+                                },
+                                "locations": {
+                                    "description": "List services",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#definitions/Room"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Has problem when get list service"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
