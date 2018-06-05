@@ -1,0 +1,271 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+
+use App\Models\Event;
+use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
+use App\Repositories\EventRepository;
+use App\Http\Controllers\ApiController;
+use App\Transformers\EventTransformer;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
+class EventsController extends ApiController
+{
+
+    /**
+     *  List events
+     *
+     * @SWG\Get(
+     *     path="/events",
+     *     summary="get list events",
+     *     tags={"Event"},
+     *     description="get list events for member",
+     *     operationId="events",
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *         name="accessToken",
+     *         in="header",
+     *         required=true,
+     *         type="string",
+     *         description="eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+     *         default=""
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="meta",
+     *                  type="object",
+     *                  @SWG\Property(
+     *                      property="code",
+     *                      type="integer",
+     *                      format="int32",
+     *                      example="0: has problem| 1: success"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="message",
+     *                      type="string",
+     *                      example="Get list events successfully"
+     *                  )
+     *              ),
+     *              @SWG\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @SWG\Items(ref="#/definitions/Event")
+     *             )
+     *         )
+     *     ),
+     *     @SWG\Response(
+     *         response=304,
+     *         description="Has problem when get list event"
+     *     )
+     * )
+     *
+     *
+     * @param eventRepository $repository
+     * @return \Dingo\Api\Http\Response
+     */
+    public function list(eventRepository $repository)
+    {
+        $event = $repository->getAllColection();
+        return $this->response->collection($event, new eventTransformer(), ['key' => 'events'])->setMeta([
+            'code'=> 1,
+            'message'=> 'Get list events successfully',
+        ]);
+
+    }
+
+    /**
+     *  Register to join event
+     *
+     * @SWG\Post(
+     *     path="/events/register",
+     *     summary="register to join event",
+     *     tags={"Event"},
+     *     description="register to join event",
+     *     operationId="register",
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *         name="accessToken",
+     *         in="header",
+     *         required=true,
+     *         type="string",
+     *         description="eyJraWQiOiJON2tvUXQwSGhpTndoQmNicFppVmNkdTFzeEp5ZEpKTXhOeWVtdGU2Z.....",
+     *         default=""
+     *     ),
+     *     @SWG\Parameter(
+     *         name="body",
+     *         in="body",
+     *         description="event information",
+     *         required=true,
+     *         @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="action",
+     *                  type="integer",
+     *                  example="1: booking| 2: cancel"
+     *              ),
+     *              @SWG\Property(
+     *                  property="event_id",
+     *                  type="integer",
+     *              ),
+     *              @SWG\Property(
+     *                  property="slot",
+     *                  type="integer",
+     *              ),
+     *         )
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="meta",
+     *                  type="object",
+     *                  @SWG\Property(
+     *                      property="code",
+     *                      type="integer",
+     *                      format="int32",
+     *                      example="0: has problem| 1: success"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="message",
+     *                      type="string",
+     *                      example="Register successfully"
+     *                  )
+     *              ),
+     *              @SWG\Property(
+     *                 property="data",
+     *                 type="object",
+     *             )
+     *         )
+     *     ),
+     *     @SWG\Response(
+     *         response=304,
+     *         description="Has problem when send register request"
+     *     )
+     * )
+     *
+     *
+     * @param Request $request
+     * @param eventRepository $repository
+     * @return \Dingo\Api\Http\Response
+     */
+    public function register(Request $request, eventRepository $repository){
+        $token = $request->header('accessToken', false);
+        $member = JWTAuth::toUser($token);
+        $event = Event::find($request->event_id);
+        if (!$event) {
+            return response()->json([
+                'meta' => [
+                    'code' => 0,
+                    'message' => 'Event is not exist'
+                ],
+                'data' => null,
+            ]);
+        }
+        $stringtime = $event->date . ',' . $event->time_end;
+        $timestampPresent = time();
+        $eventTimestamp = strtotime($stringtime);
+        if ($eventTimestamp < $timestampPresent) {
+            $event->status = 2;
+            $event->save();
+            return response()->json([
+                'meta' => [
+                    'code' => 0,
+                    'message' => 'Event is closed'
+                ],
+                'data' => null,
+            ]);
+        }
+        $arrMemberID = explode('|', $event->member_register);
+        $arrSlot = explode('|', $event->slotformem);
+        $filledSlot = array_sum($arrSlot);
+        $nullSlot = $event->slot - $filledSlot;
+        if ($request->action == 1) {
+            if (in_array($member->id, $arrMemberID)) {
+                if ($nullSlot < $request->slot) {
+                    return response()->json([
+                        'meta' => [
+                            'code' => 0,
+                            'message' => 'Now, we have not enough ' . $request->slot . ' slots for you, it is only ' . $nullSlot . ' slot left'
+                        ],
+                        'data' => null,
+                    ]);
+                }
+                foreach ($arrMemberID as $key => $id) {
+                    if ($member->id == $id) {
+                        $arrSlot[$key] += $request->slot;
+                        $slotformem = implode('|', $arrSlot);
+                        $event->slotformem = $slotformem;
+                        $event->save();
+                    }
+                }
+                return response()->json([
+                    'meta' => [
+                        'code' => 1,
+                        'message' => 'Register successfully'
+                    ],
+                    'data' => null,
+                ]);
+            } else {
+                if ($nullSlot < $request->slot) {
+                    return response()->json([
+                        'meta' => [
+                            'code' => 0,
+                            'message' => 'Now, we have not enough ' . $request->slot . ' slots for you, it is only ' . $nullSlot . ' slot left'
+                        ],
+                        'data' => null,
+                    ]);
+                }
+                $arrMemberID[] = $member->id;
+                $arrSlot[] = $request->slot;
+                $event->member_register = implode("|", $arrMemberID);
+                $event->slotformem = implode("|", $arrSlot);
+                $event->save();
+                return response()->json([
+                    'meta' => [
+                        'code' => 1,
+                        'message' => 'Register successfully'
+                    ],
+                    'data' => null,
+                ]);
+            }
+        } else {
+            if (in_array($member->id, $arrMemberID)) {
+
+                foreach ($arrMemberID as $key => $id) {
+                    if ($member->id == $id) {
+                        if ($arrSlot[$key] <= $request->slot) {
+                            unset($arrSlot[$key]);
+                            unset($arrMemberID[$key]);
+                        } else {
+                            $arrSlot[$key] -= $request->slot;
+                        }
+                        $event->member_register = implode("|", $arrMemberID);
+                        $event->slotformem = implode("|", $arrSlot);
+                        $event->save();
+                    }
+                }
+                return response()->json([
+                    'meta' => [
+                        'code' => 1,
+                        'message' => 'Cancellation successfully'
+                    ],
+                    'data' => null,
+                ]);
+            } else {
+                return response()->json([
+                    'meta' => [
+                        'code' => 1,
+                        'message' => 'You were not register in this event'
+                    ],
+                    'data' => null,
+                ]);
+            }
+        }
+
+    }
+}
